@@ -1,7 +1,7 @@
 "=========================================================================
 " DesCRiption: 适合自己使用的vimrc文件，for Linux/Windows, GUI/Console
 "
-" Last Change: 2010年08月02日 15时13分 
+" Last Change: 2020年5月8日22:54:44 
 "
 " Version:     1.80
 "
@@ -293,7 +293,7 @@ let OmniCpp_SelectFirstItem = 2    "自动弹出时自动跳至第一个
 set tags+=./tags
 
 " 当新建 .h .c .hpp .cpp .mk .sh等文件时自动调用SetTitle 函数
-autocmd BufNewFile *.[ch],*.hpp,*.cpp,Makefile,*.mk,*.sh exec ":call SetTitle()" 
+autocmd BufNewFile *.[c],*.hpp,*.cpp,Makefile,*.mk,*.sh exec ":call SetTitle()" 
 " 加入注释 
 func SetComment()
 	call setline(1,"/*================================================================") 
@@ -307,6 +307,25 @@ func SetComment()
 	call append(line(".")+7, "================================================================*/") 
 	call append(line(".")+8, "")
 	call append(line(".")+9, "")
+endfunc
+" 当新建 .h文件时自动调用SetTitle 函数
+autocmd BufNewFile *.h exec ":call SetComment_h()" 
+" 加入注释 
+func SetComment_h()
+	call setline(1,"/*================================================================") 
+	call append(line("."),   "*   Copyright (C) ".strftime("%Y")." Sangfor Ltd. All rights reserved.")
+	call append(line(".")+1, "*   ") 
+	call append(line(".")+2, "*   文件名称：".expand("%:t")) 
+	call append(line(".")+3, "*   创 建 者：zt")
+	call append(line(".")+4, "*   创建日期：".strftime("%Y年%m月%d日")) 
+	call append(line(".")+5, "*   描    述：") 
+	call append(line(".")+6, "*")
+	call append(line(".")+7, "================================================================*/") 
+	call append(line(".")+8, "")
+	call append(line(".")+9, "#ifndef  __")
+	call append(line(".")+10, "#define __")
+	call append(line(".")+11, "")
+	call append(line(".")+12, "#endif")
 endfunc
 " 加入shell,Makefile注释
 func SetComment_sh()
@@ -383,18 +402,19 @@ inoremap class class ClassName {<CR>};<ESC>kE2lve
 inoremap st<Space> struct {<CR>};<ESC>kEla
 inoremap tp<Space> template <class T><CR>
 
-inoremap if if() {<CR><CR>}//endif<ESC>02k2ei
-inoremap ife if() {<CR><CR>} else {}<ESC>02k2ei
+inoremap if if(){<CR><CR>}//endif<ESC>02k2ei
+inoremap ife if(){<CR><CR>} else<CR>{<CR><CR>}<ESC>02k2ei
 inoremap while while(){<CR><CR>}//endwhile<ESC>2khi
 inoremap do do{<CR><CR>}while();<ESC>0ki<Tab>
 inoremap try try{<CR><CR>}catch(){<CR>}<ESC>2ki<Tab>
 inoremap for for(int i = 0;i < len; ++i){<CR><CR>}//endfor<ESC>2k10lve
-inoremap switch switch(){<CR>case:break;<CR>case:break;<CR>default:break;<CR>}//endswitch<ESC>4kehi
+inoremap switch switch()<CR>{<CR>case:break;<CR>case:break;<CR>default:break;<CR>}//endswitch<ESC>4kehi
 inoremap pri printf("");
 
 
 inoremap main int main(int argc, char* argv[]){<CR><CR>return 0;<CR>}<ESC>2ki<Tab>
 inoremap fn<Space> /*<CR><Tab>Describe:<CR><ESC>0i<Tab>Result:<CR><ESC>0i<Tab>Parameters: TypeName: Meaning<CR><Tab>arg:<CR><ESC>0i*/<ESC>4kEa
+inoremap cont<Space> /*操作:*/<CR>/*前提条件:*/<CR>/*后置条件:*/<ESC>4kEa
 "user design strat
 
 
@@ -416,5 +436,4 @@ endif
 endfunction
 map <C-R> :call CompileRunGcc()<CR>
 "compile end
-
 
