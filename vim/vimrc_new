@@ -386,11 +386,11 @@ inoremap [  []<ESC>i
 inoremap {  {}<ESC>i
 inoremap<>  <><ESC>i
 
-inoremap /* /**/<ESC>hi
-inoremap #def #define 
-inoremap #in #include <><ESC>i
+"inoremap /*<Space> /**/<ESC>hi
+inoremap #def<Space> #define 
+inoremap #in<Space> #include <><ESC>i
 inoremap np<Space> using namespace std;<CR>
-inoremap nf #ifndef<CR>#define<CR><CR>#endif<ESC>3kea
+inoremap nf<Space> #ifndef<CR>#define<CR><CR>#endif<ESC>3kea
 
 
 map <C-A> <ESC>ggVG
@@ -398,23 +398,24 @@ map <C-A> <ESC>ggVG
 "map <C-V> p
 
 
-inoremap class class ClassName {<CR>};<ESC>kE2lve
+inoremap class<Space> class ClassName {<CR>};<ESC>kE2lve
 inoremap st<Space> struct {<CR>};<ESC>kEla
 inoremap tp<Space> template <class T><CR>
 
-inoremap if if(){<CR><CR>}//endif<ESC>02k2ei
-inoremap ife if(){<CR><CR>} else<CR>{<CR><CR>}<ESC>02k2ei
-inoremap while while(){<CR><CR>}//endwhile<ESC>2khi
-inoremap do do{<CR><CR>}while();<ESC>0ki<Tab>
-inoremap try try{<CR><CR>}catch(){<CR>}<ESC>2ki<Tab>
-inoremap for for(int i = 0;i < len; ++i){<CR><CR>}//endfor<ESC>2k10lve
-inoremap switch switch()<CR>{<CR>case:break;<CR>case:break;<CR>default:break;<CR>}//endswitch<ESC>4kehi
-inoremap pri printf("");
+inoremap if<Space> if()<CR>{<CR><CR>}//endif<ESC>02k2ei
+inoremap ife<Space> if()<CR>{<CR><CR>} else<CR>{<CR><CR>}<ESC>02k2ei
+inoremap while<Space> while()<CR>{<CR><CR>}//endwhile<ESC>2khi
+inoremap do<Space>do<CR>{<CR><CR>}while();<ESC>0ki<Tab>
+inoremap try<Space> try<CR>{<CR><CR>}catch(){<CR>}<ESC>2ki<Tab>
+inoremap for<Space> for<CR>(int i = 0;i < len; ++i){<CR><CR>}//endfor<ESC>2k10lve
+inoremap swit<Space> switch()<CR>{<CR>case:break;<CR>case:break;<CR>default:break;<CR>}//endswitch<ESC>4kehi
+inoremap pri<Space> printf("");
 
 
-inoremap main int main(int argc, char* argv[]){<CR><CR>return 0;<CR>}<ESC>2ki<Tab>
+inoremap main<Space> int main(int argc, char* argv[]){<CR><CR>return 0;<CR>}<ESC>2ki<Tab>
 inoremap fn<Space> /*<CR><Tab>Describe:<CR><ESC>0i<Tab>Result:<CR><ESC>0i<Tab>Parameters: TypeName: Meaning<CR><Tab>arg:<CR><ESC>0i*/<ESC>4kEa
-inoremap cont<Space> /*操作:*/<CR>/*前提条件:*/<CR>/*后置条件:*/<ESC>4kEa
+"inoremap cont<Space> /*操作:*/<CR>/*前提条件:*/<CR>/*后置条件:*/<ESC>4kEa
+inoremap cont<Space> /***************************************************************************<CR>@作者:zhangt<CR>@函数功能:<CR>@输入参数:<CR>@返回参数:<CR>@返回值:<CR>@其他:<CR> ***************************************************************************/<ESC>4kEa
 "user design strat
 
 
